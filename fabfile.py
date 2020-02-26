@@ -1,21 +1,22 @@
 from fabric.api import *
 from fabric.contrib.files import append, exists
 import random
+from decouple import config
 
 
-REPO_URL = 'https://github.com/ZendaInnocent/portifolio-website.git'
+REPO_URL = config('REPO_URL')
 
 def deploy():
-    site_folder = f'/home/{env.user}/{env.working_folder}/'
+    site_folder = f'/home/{config('USER')}/{config('WORKING_FOLDER')}/'
 
-    run(f'mkdir -p {site_folder}')
-
-    with cd(site_folder):
-        _get_latest_source()
-        _update_static_files()
-        _udpate_database()
-        _create_or_update_dotenv()
-        
+    if exists(site_folder):
+        with cd(site_folder):
+            _get_latest_source()
+            _update_static_files()
+            _udpate_database()
+            _create_or_update_dotenv()
+    else:
+        run(f'mkdir -p {site_folder}')
 
 
 def _get_latest_source():
