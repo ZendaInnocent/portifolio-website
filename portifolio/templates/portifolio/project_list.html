@@ -1,0 +1,45 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="work" class="work-area pt-125 pb-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-title pb-25">
+                    <h2 class="title">My Recent Works</h2>
+                    <p>Nunc id dui at sapien faucibus fermentum ut vel diam. Nullam tempus, nunc id efficitur
+                        sagittis, urna est ultricies eros, ac porta sem turpis quis leo.</p>
+                </div> <!-- section title -->
+            </div>
+        </div> <!-- row -->
+        <div class="row">
+            {% for project in object_list %}
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="single-work text-center mt-30">
+                    <div class="work-image">
+                        <img src="{{ project.thumbnail.url }}" alt="work">
+                    </div>
+                    <div class="work-overlay">
+                        <div class="work-content">
+                            <h3 class="work-title">{{ project.title }}</h3>
+                            <ul>
+                                <li><a class="image-popup" href="{{ project.thumbnail.url }}"><i
+                                            class="lni-plus"></i></a></li>
+                                <li><a href="{{ project.get_absolute_url }}" title="Check Details"><i class="lni-view"></i></a></li>
+                                <li><a href="{{ project.website }}" title="Link to Website"><i class="lni-link"></i></a></li>
+                                <li><a href="{{ project.repo }}" title="Github Repo"><i class="lni-github-original"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- single work -->
+            </div>
+            {% empty %}
+            <div class="container">
+                <h3>No projects yet.</h3>
+            </div>
+            {% endfor %}
+        </div> <!-- row -->
+    </div>
+</section>
+{% endblock %}
