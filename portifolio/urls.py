@@ -6,5 +6,4 @@ app_name = 'portifolio'
 
 urlpatterns = [
     path('', views.ProjectListView.as_view(), name='project-list'),
-    path('<slug:slug>/', views.ProjectDetailView.as_view(), name='project-detail'),
 ]
