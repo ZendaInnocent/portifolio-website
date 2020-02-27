@@ -37,7 +37,7 @@ else:
 INSTALLED_APPS = [
     'main',
     'posts',
-    'projects',
+    'portifolio',
     'crispy_forms',
     'mdeditor',
     'django.contrib.admin',
