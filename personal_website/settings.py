@@ -79,6 +79,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'personal_website.wsgi.application'
 
 
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', cast=bool)
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool)
+
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -153,8 +157,5 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 if not DEBUG:
     STATIC_ROOT = config('STATIC_ROOT')
     MEDIA_ROOT = config('MEDIA_ROOT')
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
