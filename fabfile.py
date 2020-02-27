@@ -18,6 +18,7 @@ def deploy():
     if exists(site_folder):
         with cd(site_folder):
             _get_latest_source()
+            _update_virtualenv()
             _update_static_files()
             _udpate_database()
             _create_or_update_dotenv()
