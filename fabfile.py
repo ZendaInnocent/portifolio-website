@@ -24,7 +24,7 @@ def _get_latest_source():
     print()
 
     if exists('.git'):
-        run('git pull origin master')
+        run(f'git fetch {REPO_URL}')
     else:
         run(f'git clone {REPO_URL} .')
 
@@ -43,8 +43,7 @@ def _create_or_update_dotenv():
     print('Updating dotenv')
     print()
 
-    append('.env', 'DJANGO_DEBUG_FALSE=y')
-    append('.env', f'SITENAME={env.host}')
+    append('.env', 'DEBUG=False')
 
     current_contents = run('cat .env')
 
