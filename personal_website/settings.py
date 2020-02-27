@@ -27,7 +27,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = True
 
 if not DEBUG:
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS')
+    ALLOWED_HOSTS = [config('ALLOWED_HOSTS')]
 else:
     ALLOWED_HOSTS = []
 
@@ -78,6 +78,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'personal_website.wsgi.application'
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -85,10 +89,10 @@ WSGI_APPLICATION = 'personal_website.wsgi.application'
 if not DEBUG:
     DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
-        'PASSWORD': config('DB_HOST_PASSWORD'),
+        'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT')
     }
@@ -143,9 +147,15 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+if not DEBUG:
+    STATIC_ROOT = config('STATIC_ROOT')
+    MEDIA_ROOT = config('MEDIA_ROOT')
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
