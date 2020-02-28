@@ -10,7 +10,7 @@ from posts.forms import PostCreateForm
 class PostListView(ListView):
     model = Post
     template_name = 'posts/post_list.html'
-    paginate_by = 1
+    paginate_by = 9
 
 
 class PostDetailView(DetailView):
