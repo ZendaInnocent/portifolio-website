@@ -34,6 +34,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    featured = models.BooleanField(default=False)
     prev_post = models.ForeignKey('self', verbose_name='Previous Post', 
         related_name='previous_post', on_delete=models.SET_NULL, null=True, blank=True)
     nxt_post = models.ForeignKey('self', verbose_name='Next Post', 

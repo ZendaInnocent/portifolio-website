@@ -27,10 +27,10 @@
                     <div class="work-overlay">
                         <div class="work-content">
                             <h3 class="work-title">{{ project.title }}</h3>
-                            <p class="text-light">{{ project.description }}</p>
+                            <p class="text-light">{{ project.overview }}</p>
                             <ul>
-                                <li><a class="image-popup" href="{{ project.thumbnail.url }}"><i
-                                            class="lni-plus"></i></a></li>
+                                <li><a class="image-popup" href="{{ project.thumbnail.url }}"><i class="lni-plus"></i></a></li>
+                                <li><a href="{{ project.get_absolute_url }}" title="View Project Details"><i class="lni-eye"></i></a></li>
                                 <li><a href="{{ project.website }}" title="Link to Website"><i class="lni-link"></i></a></li>
                                 <li><a href="{{ project.repo }}" title="Github Repo"><i class="lni-github-original"></i></a></li>
                             </ul>

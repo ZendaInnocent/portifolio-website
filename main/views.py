@@ -8,8 +8,8 @@ from .forms import ContactForm
 
 def index_view(request):
     context ={
-        'object_list': Post.objects.all(),
-        'projects': Project.objects.all(),
+        'featured_posts': Post.objects.filter(featured=True),
+        'featured_projects': Project.objects.filter(featured=True),
         'form': ContactForm()
     }
     return render(request, 'main/index.html', context)
