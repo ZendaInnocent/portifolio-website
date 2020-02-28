@@ -2,6 +2,7 @@ from django.shortcuts import render, get_list_or_404, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.urls import reverse_lazy
 
 from posts.models import Post, Tag
 from posts.forms import PostCreateForm
@@ -43,8 +44,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixi
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     model = Post
-    template_name = 'posts/post_delete.html'
-    success_url = '/'
+    success_url = reverse_lazy('posts:post-list')
     success_message = 'Post deleted successful.'
 
     def test_func(self):

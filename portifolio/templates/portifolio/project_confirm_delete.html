@@ -1,7 +1,7 @@
 {% extends 'posts/base.html' %}
 
 {% block title %}
-    Delete Post -
+    Delete Project -
 {% endblock title %}
     
 
@@ -12,7 +12,7 @@
             {% csrf_token %}
             <p>You want to delete {{ object }}?</p>
             <div class="mt-3">
-                <a href="" class="btn btn-secondary mr-2">No</a>
+                <a href="{{ object.get_absolute_url }}" class="btn btn-secondary mr-2">No</a>
                 <button class="btn btn-danger">Yes, Delete</button>
             </div>
         </form>

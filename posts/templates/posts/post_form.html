@@ -2,8 +2,10 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
 <div class="mt-5 pt-5">
-    <form action="" method="POST" class="col-md-8 offset-md-2 my-5 pt-4">
+    <form method="POST" enctype="multipart/form-data" class="col-md-8 offset-md-2 my-5 pt-4">
+        <h2 class="mb-4">Create Post</h2>
         {% csrf_token %}
         {{ form.media }}
         {{ form | crispy }}

@@ -347,7 +347,7 @@
                 </div>
             </div> <!-- row -->
             <div class="row">
-                {% for project in projects %}
+                {% for project in featured_projects %}
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-work text-center mt-30">
                         <div class="work-image">
@@ -402,7 +402,7 @@
             </div> <!-- row -->
             <div class="row justify-content-center">
             
-            {% for post in object_list %}
+            {% for post in featured_posts %}
             <div class="col-lg-4 col-md-8 col-sm-9 mt-3">
                 <div class="card">
                     <a href="{{ post.get_absolute_url }}">
