@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<section id="blog" class="blog-area pt-125 pb-130">
+<section id="blog" class="blog-area pt-125 pb-130 mt-45">
     <div class="container">
         <div class="row justify-content-center">
             {% for post in object_list %}
@@ -34,8 +34,49 @@
             <h4>No posts yet.</h4>
             {% endfor %}
         </div> <!-- row -->
-        <div class="row">
-            <!-- Add navigation -->
+        <div class="row mt-5 justify-content-center footer-content">
+            <!-- Pagination -->
+            {% if is_paginated %}
+              <ul>
+                {% if page_obj.has_previous %}
+                  <li>
+                    <a href="?page=1" class="text-light" style="font-size: large;">
+                     First
+                    </a>
+                  </li>
+                  <li>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="text-light">
+                     <i class="fa fa-angle-left"></i>
+                    </a>
+                  </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                  {% if page_obj.number == num %}
+                  <li>
+                    <a href="?page={{ num }}" class="text-light">{{ num }}</a>
+                  </li>
+                  {% elif num > page_obj.number|add:'-1' and num < page_obj.number|add:'1' %}
+                      <li>
+                        <a href="?page={{ num }}" class="text-light">{{ num }}</a>
+                      </li>
+                  {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                  <li>
+                    <a href="?page={{ page_obj.next_page_number }}" class="text-light">
+                      <i class="fa fa-angle-right"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="?page=last" class="text-light" style="font-size: large;">
+                      Last
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+           
+            {% endif %}
+          </div>
         </div> <!-- row -->
     </div> <!-- container -->
 </section>
