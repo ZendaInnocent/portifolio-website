@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.conf import settings
 
 from posts.models import Post
 from portifolio.models import Project
@@ -24,9 +25,9 @@ def index_view(request):
             name = form.cleaned_data['name']
 
             send_mail(
-                'Mail from site',
+                f'Mail from site. Sender: {from_email}',
                 message,
-                from_email,
+                settings.EMAIL_HOST_USER,
                 ['innocent@zendainnocent.com', ],
                 fail_silently=False
             )
