@@ -13,8 +13,6 @@ class TestForm(TestCase):
         })
 
         self.assertTrue(form.is_valid())
-        self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Site message')
 
 
     def test_invalid_contact_form(self):
