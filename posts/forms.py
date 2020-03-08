@@ -7,4 +7,4 @@ class PostCreateForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        exclude = ("slug",)
+        fields = '__all__'

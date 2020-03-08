@@ -7,4 +7,4 @@ class ProjectCreateForm(forms.ModelForm):
     
     class Meta:
         model = Project
-        exclude = ('slug', )
+        fields = "__all__"
