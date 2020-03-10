@@ -26,6 +26,12 @@ class Tag(models.Model):
         return super().save(*args, **kwargs)
 
 
+STATUS_CHOICES = (
+    (0, 'Draft'),
+    (1, 'Publish'),
+)
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
@@ -39,6 +45,10 @@ class Post(models.Model):
         related_name='previous_post', on_delete=models.SET_NULL, null=True, blank=True)
     nxt_post = models.ForeignKey('self', verbose_name='Next Post', 
         related_name='next_post', on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0)
+
+    class Meta:
+        ordering = ['-created_on', 'title', ]
 
     def __str__(self):
         return self.title

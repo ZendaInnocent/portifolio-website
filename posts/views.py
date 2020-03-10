@@ -9,7 +9,7 @@ from posts.forms import PostCreateForm
 
 
 class PostListView(ListView):
-    model = Post
+    queryset = Post.objects.filter(status=1).order_by('-created_on')
     template_name = 'posts/post_list.html'
     paginate_by = 9
 
@@ -60,5 +60,5 @@ class TagDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         tag = Tag.objects.get(slug=self.kwargs['slug'])
-        context['object_list'] = tag.post_set.all()
+        context['object_list'] = tag.post_set.filter(status=1)
         return context
