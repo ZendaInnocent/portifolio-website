@@ -3,9 +3,10 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
-from posts.models import Post, Tag
-from posts.forms import PostCreateForm
+from posts.models import Post, Tag, Comment
+from posts.forms import PostCreateForm, CommentForm
 
 
 class PostListView(ListView):
@@ -18,6 +19,22 @@ class PostDetailView(DetailView):
     model = Post
     template_object_name = 'post'
     template_name = 'posts/post_detail.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['comment_form'] = CommentForm()
+        return context\
+
+    def post(self, request, slug):
+        post = self.get_object()
+        if self.request.method == 'POST':
+            form = CommentForm(self.request.POST)
+            if form.is_valid():
+                form.instance.post_id = post.id
+                form.save()
+            else:
+                form = CommentForm()
+        return HttpResponseRedirect(reverse('posts:post-detail', kwargs={'slug': post.slug}))
 
 
 class PostCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
