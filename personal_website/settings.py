@@ -148,7 +148,10 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
+<<<<<<< HEAD
 LOGOUT_REDIRECT_URL = '/'
+=======
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee
 
 MEDIA_URL = '/media/'
 

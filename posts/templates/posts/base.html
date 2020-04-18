@@ -36,7 +36,9 @@
         <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
     
         <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-        
+        <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+        <link rel="stylesheet" href="{% static '/css/codehilite_styles.css' %}">
+        <link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}">
     
     </head>
 
@@ -64,15 +66,6 @@
                                     <li class="nav-item"><a class="page-scroll" href="/">Home</a></li>
                                     <li class="nav-item {% if request.path == '/portifolio/' %}active{% endif %}"><a class="page-scroll" href="{% url 'portifolio:project-list' %}">Portifolio</a></li>
                                     <li class="nav-item {% if request.path == '/blog/' %}active{% endif %}"><a class="page-scroll" href="{% url 'posts:post-list' %}">Blog</a></li>
-
-                                    {% if request.user.is_authenticated %}
-                                        {% if request.user.is_staff %}
-                                        <li class="nav-item"><a class="page-scroll" href="{% url 'posts:post-create' %}">New Post</a></li>
-                                        <li class="nav-item"><a class="page-scroll" href="{% url 'logout' %}">Logout</a></li>
-                                        {% endif %}
-                                        {% else %}
-                                        <li class="nav-item"><a class="page-scroll" href="{% url 'login' %}">Login</a></li>
-                                    {% endif %}
                                 </ul>
                             </div> <!-- navbar collapse -->
                         </nav> <!-- navbar -->
