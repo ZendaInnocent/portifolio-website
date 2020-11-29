@@ -1,0 +1,5 @@
+django
+markdown
+django-decouple
+pillow
+django-crispy-forms
