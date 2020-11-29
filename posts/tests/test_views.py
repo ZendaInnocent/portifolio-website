@@ -13,6 +13,7 @@ class TestPostsViews(TestCase):
             title = 'First Post',
             thumbnail = 'assets/banner/hero-image.svg',
         )
+<<<<<<< HEAD
         self.published_post1 = Post.objects.create(
             title = 'Test published post',
             status = 1,
@@ -21,18 +22,28 @@ class TestPostsViews(TestCase):
             title = 'Test published post',
             status = 1,
         )
+=======
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee
         self.staff_user = User.objects.create_user(username='Inno',
         password='adfshou94y840', is_staff=True)
         self.user = User.objects.create_user(username='user',
         password='foiafdyohfads', is_staff=False)
     
     # # to-do
+<<<<<<< HEAD
     def test_post_list_view_shows_published_posts_only(self):
         response = self.client.get(reverse('posts:post-list'))
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'posts/post_list.html')
         self.assertEqual(response.context['object_list'], self.published_post)
+=======
+    # def test_post_list_view(self):
+    #     response = self.client.get(reverse('posts:post-list'))
+
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'posts/post_list.html')
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee
 
     
     def test_post_detail_view(self):

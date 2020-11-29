@@ -7,6 +7,7 @@ class PostCreateForm(forms.ModelForm):
     
     class Meta:
         model = Post
+<<<<<<< HEAD
         fields = '__all__'
 
 
@@ -19,3 +20,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['name', 'email', 'body', ]
+=======
+        fields = '__all__'
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee

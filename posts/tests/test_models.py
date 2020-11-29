@@ -41,8 +41,13 @@ class TestPostsSaveRetrieve(TestCase):
 
         self.assertEquals(len(saved_posts), 2)
 
+<<<<<<< HEAD
         first_post = Post.objects.get(id=1)
         second_post = Post.objects.get(id=2)
+=======
+        first_post = Post.objects.first()
+        second_post = Post.objects.last()
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee
         
         self.assertEquals(first_post.title, 'First Post')
         self.assertEquals(second_post.title, 'second post')

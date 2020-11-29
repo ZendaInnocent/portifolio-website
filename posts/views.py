@@ -3,7 +3,10 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+<<<<<<< HEAD
 from django.http import HttpResponseRedirect
+=======
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee
 
 from posts.models import Post, Tag, Comment
 from posts.forms import PostCreateForm, CommentForm
@@ -77,5 +80,9 @@ class TagDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         tag = Tag.objects.get(slug=self.kwargs['slug'])
+<<<<<<< HEAD
         context['object_list'] = tag.post_set.filter(status=1)
+=======
+        context['object_list'] = tag.post_set.all()
+>>>>>>> 976608b211e8bfb508bc4200d409bea05876e3ee
         return context
