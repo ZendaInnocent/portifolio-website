@@ -24,12 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = config('DEBUG', cast=bool, default=False)
 
-if not DEBUG:
-    ALLOWED_HOSTS = [config('ALLOWED_HOSTS')]
-else:
-    ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [
+                       s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -38,8 +36,10 @@ INSTALLED_APPS = [
     'main',
     'posts',
     'portifolio',
+
     'crispy_forms',
     'mdeditor',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,15 +88,15 @@ CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool)
 
 if not DEBUG:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT')
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT')
+        }
     }
-}
 else:
     DATABASES = {
         'default': {
@@ -167,7 +167,7 @@ if not DEBUG:
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
     EMAIL_PORT = config('EMAIL_PORT', cast=int)
     EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-    
+
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'

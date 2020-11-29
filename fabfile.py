@@ -9,6 +9,7 @@ user = config('USER')
 folder = config('WORKING_FOLDER')
 loca_git_folder = config('LOCAL_GIT_FOLDER')
 
+
 def deploy():
 
     _local_git()
@@ -24,6 +25,7 @@ def deploy():
             _create_or_update_dotenv()
     else:
         run(f'mkdir -p {site_folder}')
+
 
 def _local_git():
     print('Performing Local git operations')
@@ -49,6 +51,7 @@ def _update_virtualenv():
 
     run(f'/home/{user}/virtualenv/{folder}/3.7/bin/pip install -r requirements.txt')
 
+
 def _update_static_files():
     print('Updating static files.')
     print()
@@ -61,6 +64,7 @@ def _udpate_database():
     print()
 
     run(f'/home/{user}/virtualenv/{folder}/3.7/bin/python manage.py migrate --noinput')
+
 
 def _create_or_update_dotenv():
     print('Updating dotenv')
